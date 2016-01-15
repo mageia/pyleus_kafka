@@ -1,0 +1,23 @@
+name: Streaming_Topology
+
+workers: 2
+
+topology:
+    - spout:
+        name: test_spout
+        type: kafka
+        options:
+            topic: test
+            module: Streaming_Topology.test_spout
+            zk_hosts: 119.254.111.40:2181/kafka/q-63lnrnga
+            zk_root: /pyleus-kafka-offsets/streaming_topology
+            consumer_id: pyleus-Streaming_Topology
+            from_start: false
+            start_offset_time: 2147483648
+            binary_data: true
+    - bolt:
+        name: classfierByUid_bolt
+        module: Streaming_Topology.classfierByUid_bolt
+        groupings:
+            - shuffle_grouping: 
+                component: test_spout
