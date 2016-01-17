@@ -2,7 +2,7 @@ import logging
 
 from pyleus.storm import Spout
 
-log = logging.getLogger("logging_example.line_spout")
+log = logging.getLogger("stastic_logging.first_spout")
 
 
 class LineSpout(Spout):

@@ -4,7 +4,7 @@ import logging.config
 
 from pyleus.storm import SimpleBolt
 
-log = logging.getLogger("logging_example.logger_bolt")
+log = logging.getLogger("stastic_logging.first_bolt")
 
 
 class LoggerBolt(SimpleBolt):
