@@ -1,3 +1,4 @@
+import json
 import logging
 import logging.config
 
@@ -9,8 +10,12 @@ log = logging.getLogger("logging_example.logger_bolt")
 class LoggerBolt(SimpleBolt):
 
     def process_tuple(self, tup):
-        for k in tup.values:
-            log.info("Received: %r", k)
+        for i, v in enumerate(tup.values):
+            #log.info("[** %d **]Received: %r", i, v)
+            obj = json.loads(v)
+            motion = obj.get('motionProb') or {}
+            log.info("Motion: %r", motion.items())
+
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ log = logging.getLogger("logging_example.line_spout")
 
 
 class LineSpout(Spout):
-    OUTPUT_FIELDS = ['timestamp', 'added']
+    #OUTPUT_FIELDS = ['timestamp', 'added']
 
     def next_tuple(self, tup):
         self.emit(tup)
