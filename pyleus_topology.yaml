@@ -1,23 +1,22 @@
-name: Streaming_Topology
-
-workers: 2
+name: logging_example
 
 topology:
+
     - spout:
-        name: first_spout
+        name: line-spout
         type: kafka
         options:
             topic: test
-            module: topology.spout
+            module: logging_example.line_spout
             zk_hosts: 119.254.111.40:2181/kafka/q-63lnrnga
             zk_root: /pyleus-kafka-offsets/streaming_topology
-            consumer_id: Streaming_Topology
+            consumer_id: logging_example
             from_start: false
             start_offset_time: 2147483648
             binary_data: true
+
     - bolt:
-        name: first_bolt
-        module: topology.bolt
+        name: logger-bolt
+        module: logging_example.logger_bolt
         groupings:
-            - shuffle_grouping: 
-                component: first_spout
+            - shuffle_grouping: line-spout
