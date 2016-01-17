@@ -1,22 +1,22 @@
-name: logging_example
+name: stastic
 
 topology:
 
     - spout:
-        name: line-spout
+        name: first_spout
         type: kafka
         options:
             topic: test
-            module: logging_example.line_spout
+            module: stastic.first_spout
             zk_hosts: 119.254.111.40:2181/kafka/q-63lnrnga
-            zk_root: /pyleus-kafka-offsets/streaming_topology
-            consumer_id: logging_example
+            zk_root: /pyleus-kafka-offsets/stastic
+            consumer_id: stastic
             from_start: false
             start_offset_time: 2147483648
             binary_data: true
 
     - bolt:
-        name: logger-bolt
-        module: logging_example.logger_bolt
+        name: first_bolt
+        module: stastic.first_bolt
         groupings:
-            - shuffle_grouping: line-spout
+            - shuffle_grouping: first_spout
